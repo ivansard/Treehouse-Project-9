@@ -1,13 +1,16 @@
 import React from 'react';
+import { NavLink, Router} from 'react-router-dom';
 
 const Navbar = () => {
 
     return (
-        <ul>
-            <li>First link</li>
-            <li>Second link</li>
-            <li>Third link</li>
-        </ul>
+        <nav className="main-nav">
+            <ul>
+                <li><NavLink to="#">Breaking Bad</NavLink></li>
+                <li><NavLink to="#">Game of thrones</NavLink></li>
+                <li><NavLink to="#">The Wire</NavLink></li>
+            </ul>
+        </nav>
     )
 }
 
