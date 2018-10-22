@@ -6,26 +6,37 @@ import {
   BrowserRouter,
   Route
 } from 'react-router-dom';
+//Component imports
 import Header from './components/Header';
 import Gallery from './components/Gallery';
+import Home from './components/Home';
+//Api key and axios imports
 import apiKey from './config/config';
 import axios from 'axios';
 
 class App extends Component {
 
-  state = { 
-    apiKey: apiKey,
-    photoData: []
+  constructor(){
+    super();
+    this.state = { 
+      apiKey: apiKey,
+      currentSearchTag: '',
+      photos: []
+    }
+    this.setPhotoData = this.setPhotoData.bind(this);
   }
+
 
   componentDidMount(){
-    this.setDefaultImages();
+    // if(this.state.photos.length === 0){
+    //   this.setPhotoData('cats')
+    // }
   }
 
-  setDefaultImages(){
-    const apiKey = this.state.apiKey;
+  setPhotoData(searchTag){
+    const apiKey = this.state.apiKey; 
 
-    const url = `https://api.flickr.com/services/rest/?api_key=${apiKey}&method=flickr.photos.search&tags=california&format=json&per_page=24&page=1&nojsoncallback=1`;
+    const url = `https://api.flickr.com/services/rest/?api_key=${apiKey}&method=flickr.photos.search&tags=${searchTag}&format=json&per_page=24&page=1&nojsoncallback=1`;
 
     axios.get(url)
     .then(response => {
@@ -38,10 +49,12 @@ class App extends Component {
           id: photo.id
         }
       })
-
       //Setting the image URLs in the state
-      this.setState({
-        photoData: photoData
+      this.setState( prevState => {
+        return {
+          photos: photoData,
+          currentSearchTag: searchTag
+        }
       })
     })
     .catch(function (error) {
@@ -55,7 +68,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Header />
-          <Gallery photoData={this.state.photoData}/>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/pugs" render={ props => <Gallery {...props} setData={this.setPhotoData} data={this.state.photos} searchTag="pugs" currentSearchTag={this.state.currentSearchTag}/>}/>
+          <Route exact path="/boobs" render={ props => <Gallery {...props} setData={this.setPhotoData} data={this.state.photos} searchTag="boobs" currentSearchTag={this.state.currentSearchTag}/>}/>
+          <Route exact path="/bulldogs" render={ props => <Gallery {...props} setData={this.setPhotoData} data={this.state.photos} searchTag="bulldogs" currentSearchTag={this.state.currentSearchTag}/>}/>
+          <Route exact path="/search/:tag" render={ props => <Gallery {...props} setData={this.setPhotoData} data={this.state.photos}/>}/>
+          {/* <Gallery photoData={this.state.photos}/> */}
         </div>
       </BrowserRouter>
     );
