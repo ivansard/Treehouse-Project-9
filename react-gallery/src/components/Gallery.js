@@ -30,9 +30,11 @@ const Gallery = ({setData, data, match, searchTag, currentSearchTag}) => {
 
 
     return (
-        <div>
+        <div className="photo-container">
             <h1>This will contain the gallery items</h1>
-            {photos}
+            <ul>
+                {photos}
+            </ul>
         </div>
     )
 }
