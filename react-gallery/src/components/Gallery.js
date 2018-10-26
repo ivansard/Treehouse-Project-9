@@ -1,20 +1,24 @@
 import React from 'react';
-import {Redirect, NavLink, Route} from 'react-router-dom';
 import GalleryItem from './GalleryItem';
 import NoResults from './NoResults';
 
-const Gallery = ({setData, data, match, searchTag, currentSearchTag}) => {
+const Gallery = ({setData, data, match, searchTag}) => {
 
+
+    console.log(searchTag);
     //Checking for the presence of a search tag, if it's falsey (e.g. null, or empty string), it will be in the match object
     if(!searchTag){
+        console.log(match.params.tag);
         searchTag = match.params.tag;
     }
     console.log(searchTag);
 
-    if(searchTag !== currentSearchTag || data.length === 0){
-        setData(searchTag)
-    }
-
+    // if(data.length === 0){
+    //     setData(searchTag)
+    // }
+    console.log("Before setting data");
+    setData(searchTag); 
+    console.log("After setting data");
     console.log(data);
 
     //Variable which will contain the URLs of all the photos

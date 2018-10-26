@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import Searchbar from './Searchbar';
 import Navbar from './Navbar';
 
-class Header extends Component {
+const Header = ({performSearch}) => {
 
-    render(){
-        return (
-            <div>
-                <Searchbar />
-                <Navbar />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Searchbar performSearch={performSearch}/>
+            <Navbar />
+        </div>
+    );
+    
 }
 
 export default Header;
