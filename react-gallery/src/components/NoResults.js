@@ -3,7 +3,7 @@ import React from 'react';
 const NoResults = () => {
     
     return (
-        <h1>Sorry, no results are here</h1>
+        <h1>Sorry, no results match your search</h1>
     )
 }
 

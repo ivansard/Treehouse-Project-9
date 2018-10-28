@@ -7,19 +7,29 @@ class Searchbar extends Component{
     }
 
     onSearchChange = (event) => {
-        console.log('Search input changed');
+        event.preventDefault()
         this.setState({
             searchInput: event.target.value
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.setPhotoData(this.state.searchInput);
+        event.currentTarget.reset();
+
+        const path = `/search/${this.state.searchInput}`;
+        this.props.history.push(path);
+
+    }
+
     render(){
         return (
-            <form onSubmit={this.props.performSearch(this.state.searchInput)}>
+            <form onSubmit={this.handleSubmit}>
                 <input 
-                    type="search" 
-                    placeholder="Search for..."
-                    onChange={this.onSearchChange}
+                type="search" 
+                placeholder="Search for..."
+                onChange={this.onSearchChange}
                 ></input>
                 <button type="submit" className="search-button">
                     <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
