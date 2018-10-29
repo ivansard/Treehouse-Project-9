@@ -7,8 +7,8 @@ const Navbar = () => {
         <nav className="main-nav">
             <ul>
                 <li><NavLink to="/pugs">PUGS</NavLink></li>
-                <li><NavLink to="/boobs">BOOBS</NavLink></li>
-                <li><NavLink to="/bulldogs">BULLDOGS</NavLink></li>
+                <li><NavLink to="/cats">CATS</NavLink></li>
+                <li><NavLink to="/hendrix">HENDRIX</NavLink></li>
             </ul>
         </nav>
     )

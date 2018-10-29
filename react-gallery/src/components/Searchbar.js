@@ -6,6 +6,7 @@ class Searchbar extends Component{
         searchInput: ''
     }
 
+    //Updating the searchInput state whenever the search input is changed on the form
     onSearchChange = (event) => {
         event.preventDefault()
         this.setState({
@@ -13,11 +14,14 @@ class Searchbar extends Component{
         })
     }
 
+    //Handler for the submition of the form
     handleSubmit = (event) => {
         event.preventDefault();
+        //Setting the photo data in the application state
         this.props.setPhotoData(this.state.searchInput);
         event.currentTarget.reset();
 
+        //Pushing the search path to the history
         const path = `/search/${this.state.searchInput}`;
         this.props.history.push(path);
 
@@ -25,7 +29,7 @@ class Searchbar extends Component{
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="search-form">
                 <input 
                 type="search" 
                 placeholder="Search for..."
