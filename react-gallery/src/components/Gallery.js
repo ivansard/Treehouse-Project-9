@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect, NavLink, Route} from 'react-router-dom';
 import GalleryItem from './GalleryItem';
 import NoResults from './NoResults';
 

@@ -4,7 +4,7 @@ const GalleryItem = ({url}) =>{
 
     return (
         <li>
-            <img src={url}></img>
+            <img src={url} alt="Generated gallery item"></img>
         </li>
     );
 }
